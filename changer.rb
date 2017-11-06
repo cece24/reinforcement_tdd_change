@@ -1,30 +1,16 @@
 class Changer
   def self.make_change(num)
     change_array = []
+    change_types = [25, 10, 5, 1]
 
     while num > 0
-      if (num % 25) != num
-        factor = num / 25
-        factor.times do
-          change_array << 25
-          num -= 25
-        end
-      elsif (num % 10) != num
-        factor = num / 10
-        factor.times do
-          change_array << 10
-          num -= 10
-        end
-      elsif (num % 5) != num
-        factor = num / 5
-        factor.times do
-          change_array << 5
-          num -= 5
-        end
-      else
-        num.times do
-          change_array << 1
-          num -= 1
+      change_types.each do |change|
+        if (num % change) != num
+          factor = num / change
+          factor.times do
+            change_array << change
+            num -= change
+          end
         end
       end
     end
